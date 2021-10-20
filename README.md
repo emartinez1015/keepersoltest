@@ -35,5 +35,73 @@ your preferred browser.
 127.0.0.1:8000
 ```
 
-## Test Api Endpoints
+## REST API
+#### Login
+```
+curl --location --request POST 'http://127.0.0.1:8000/api/user/login' \
+--header 'Content-Type: application/json' \
+--data-raw '{
+    "email": "edgar@gmail.com",
+    "password": "sebasysofi25"
+}'
+```
+#### Response Login
+```
+{
+    "user": {
+        "username": "edgar@gmail.com",
+        "first_name": "",
+        "last_name": "",
+        "email": "edgar@gmail.com"
+    },
+    "access_token": "73ddb3714eee6ecdda900a95b7199034557e814a"
+}
+```
+
+## For the next endpoints
+
+#### Get BookMarks
+
+```
+curl --location --request GET 'http://127.0.0.1:8000/api/bookmark' \
+--header 'Authorization: Token 73ddb3714eee6ecdda900a95b7199034557e814a'
+```
+
+#### Create BookMarks
+```
+curl -X POST \
+  http://localhost:8000/api/bookmark \
+  -H 'authorization: Token 73ddb3714eee6ecdda900a95b7199034557e814a' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -d '{
+	"title": "Test 3",
+	"url": "test3.com",
+	"owner":1
+}'
+```
+
+### Update BookMarks
+```
+curl -X PUT \
+  http://localhost:8000/api/bookmark \
+  -H 'authorization: Token 73ddb3714eee6ecdda900a95b7199034557e814a' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' \
+  -d '{
+	"id": 2,
+	"title": "Test 3",
+	"url": "test3.com",
+	"owner":1
+}'
+```
+
+### Delete BookMarks
+```
+curl -X DELETE \
+  http://localhost:8000/api/bookmark/2 \
+  -H 'authorization: Token 73ddb3714eee6ecdda900a95b7199034557e814a' \
+  -H 'cache-control: no-cache' \
+  -H 'content-type: application/json' 
+```
 
